@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelTrack | Attendance Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">H</span><span>HostelTrack<small>ATTENDANCE SYSTEM</small></span></div>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-link" href="#student-section"><span>↔</span> Student Check-in</a>
+      <a class="nav-link" href="#records-section"><span>▤</span> Attendance Records</a>
+      <div class="sidebar-note"><span class="status-dot"></span><div><strong>Demo mode</strong><small>Data saved in this browser</small></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><div class="eyebrow">HOSTEL ADMINISTRATION</div><h1>Attendance overview</h1><p class="subheading">Monitor student movements and hostel attendance.</p></div>
+        <div class="date-chip"><span>◷</span><span id="today-label">Today</span></div>
+      </header>
+
+      <section class="stats-grid" id="overview">
+        <article class="stat-card"><div class="stat-top"><span>Total students</span><span class="stat-icon purple">♙</span></div><div class="stat-number" id="total-students">6</div><div class="stat-foot">Registered in demo list</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Currently in hostel</span><span class="stat-icon green">⌂</span></div><div class="stat-number" id="inside-count">4</div><div class="stat-foot"><span class="green-text">Live status</span> based on latest movement</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Checked out</span><span class="stat-icon orange">↗</span></div><div class="stat-number" id="outside-count">2</div><div class="stat-foot">Currently outside the hostel</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Movements today</span><span class="stat-icon blue">◷</span></div><div class="stat-number" id="movement-count">5</div><div class="stat-foot">Check-in and check-out events</div></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel checkin-panel" id="student-section">
+          <div class="panel-heading"><div><div class="eyebrow">STUDENT PORTAL</div><h2>Record a movement</h2></div><span class="panel-icon">↔</span></div>
+          <p class="panel-description">Enter your matriculation number to record leaving or returning to the hostel.</p>
+          <form id="attendance-form">
+            <label for="matric">Matriculation number</label>
+            <input id="matric" name="matric" placeholder="e.g. STU/2024/001" autocomplete="off" required>
+            <div class="hint">Try a demo ID: <button type="button" class="text-button demo-fill" data-matric="STU/2024/001">STU/2024/001</button></div>
+            <label for="movement">Movement type</label>
+            <select id="movement" name="movement"><option value="checkin">Check in — returning to hostel</option><option value="checkout">Check out — leaving hostel</option></select>
+            <button type="submit" class="primary-button"><span>✓</span> Record attendance</button>
+            <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
+          </form>
+          <div class="privacy-note"><span>ⓘ</span> Demo project only. This page does not verify identity or send data to a server.</div>
+        </article>
+
+        <article class="panel roster-panel">
+          <div class="panel-heading"><div><div class="eyebrow">QUICK VIEW</div><h2>Student status</h2></div><span class="small-muted">Latest movement</span></div>
+          <div id="roster-list" class="roster-list"></div>
+        </article>
+      </section>
+
+      <section class="panel records-panel" id="records-section">
+        <div class="records-heading"><div><div class="eyebrow">ACTIVITY LOG</div><h2>Attendance records</h2><p class="panel-description">A history of student check-ins and check-outs.</p></div><button type="button" class="secondary-button" id="export-btn">↓ Export CSV</button></div>
+        <div class="filters">
+          <div class="search-wrap"><span>⌕</span><input id="search-input" type="search" placeholder="Search name or matric number"></div>
+          <select id="type-filter" aria-label="Filter by movement"><option value="all">All movements</option><option value="checkin">Check-ins</option><option value="checkout">Check-outs</option></select>
+          <button type="button" class="secondary-button" id="reset-btn">Reset demo data</button>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>MATRIC NUMBER</th><th>MOVEMENT</th><th>DATE & TIME</th><th>STATUS AFTER MOVEMENT</th></tr></thead><tbody id="records-body"></tbody></table></div>
+        <div class="table-footer"><span id="record-summary">Showing records</span><span>Stored locally in this browser</span></div>
+      </section>
+      <footer>HostelTrack <span>•</span> Student movement demo <span>•</span> Built with HTML, CSS & JavaScript</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
